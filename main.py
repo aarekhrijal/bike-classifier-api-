@@ -12,7 +12,7 @@ app = FastAPI()
 # Fix Windows path issue
 temp = pathlib.PosixPath
 pathlib.PosixPath = pathlib.WindowsPath
-learn = load_learner(r"C:\AI,ML\Bike brand classifier\bike_classifier.pkl")
+learn = load_learner("bike_classifier.pkl")
 pathlib.PosixPath = temp
 
 # Get class names from the model
