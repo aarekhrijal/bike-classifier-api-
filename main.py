@@ -9,12 +9,19 @@ import pathlib
 
 app = FastAPI()
 
-# Fix Windows path issue
-temp = pathlib.PosixPath
-pathlib.PosixPath = pathlib.WindowsPath
-learn = load_learner("bike_classifier.pkl")
-pathlib.PosixPath = temp
+import platform
 
+# Fix path compatibility between Windows and Linux
+if platform.system() == "Windows":
+    temp = pathlib.PosixPath
+    pathlib.PosixPath = pathlib.WindowsPath
+    learn = load_learner("bike_classifier.pkl")
+    pathlib.PosixPath = temp
+else:
+    temp = pathlib.WindowsPath
+    pathlib.WindowsPath = pathlib.PosixPath
+    learn = load_learner("bike_classifier.pkl")
+    pathlib.WindowsPath = temp
 # Get class names from the model
 class_names = learn.dls.vocab
 
