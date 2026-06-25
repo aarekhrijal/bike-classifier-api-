@@ -3,7 +3,7 @@
 A REST API that classifies bike images into Honda, Yamaha, or KTM using ResNet34 and fastai.
 
 ## Live API
-[Railway URL will go here]
+https://bike-classifier-api-production.up.railway.app
 
 ## API Endpoints
 
